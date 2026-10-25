@@ -9,6 +9,8 @@
 [![Three.js](https://img.shields.io/badge/Three.js-WebGL-black.svg)](https://threejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/NoorAbdullah02/aisms)
+
 An enterprise-grade, full-stack monorepo for modern universities and educational institutions. AISMS unifies academic departments, faculty, student admissions, automated grade point transcripts, continuous attendance monitoring, financial accounting in Bangladeshi Taka (BDT / ৳), and dual-engine AI predictive analytics with real-time WebSocket communication.
 
 ---

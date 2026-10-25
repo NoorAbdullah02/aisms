@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-ink-700;
+  }
+  body {
+    @apply bg-ink-900 text-mist-200 font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-mist-100 font-semibold;
+  }
+  ::selection {
+    @apply bg-gold-500/20 text-gold-600;
+  }
+  :focus-visible {
+    outline: 2px solid theme("colors.gold.500");
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white border border-ink-700 rounded-xl shadow-card p-6;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gold-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-gold-600 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shadow-sm;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ink-700 bg-white px-4 py-2.5 text-sm font-medium text-mist-200 transition hover:border-gold-500 hover:text-gold-600 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shadow-sm;
+  }
+  .input {
+    @apply w-full rounded-lg border border-ink-700 bg-white px-3.5 py-2.5 text-sm text-mist-100 placeholder:text-mist-500 outline-none transition focus:border-gold-500 focus:ring-1 focus:ring-gold-500;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-mist-500;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

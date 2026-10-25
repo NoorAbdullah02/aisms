@@ -22,7 +22,7 @@
     "db:seed": "npm run db:seed -w backend",
     "setup": "npm install && npm run db:push && echo 'Setup complete. Run: npm run dev'"
   },
-  "devDependencies": {
+  "dependencies": {
     "concurrently": "^9.1.0"
   },
   "engines": {

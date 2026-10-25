@@ -1,6 +1,7 @@
 # 🎓 AISMS · AI-Based Student Management System
 
-[![Build Status](https://img.shields.io/badge/Build-Passing-emerald.svg)](https://github.com)
+[![Build Status](https://img.shields.io/badge/Build-Passing-emerald.svg)](https://github.com/NoorAbdullah02/aisms)
+[![Author](https://img.shields.io/badge/Author-NoorAbdullah02-blue.svg)](https://github.com/NoorAbdullah02)
 [![Node](https://img.shields.io/badge/Node-v20+-blue.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-v18%20%2F%2019-cyan.svg)](https://react.dev/)
 [![Express](https://img.shields.io/badge/Express-v4-slate.svg)](https://expressjs.com/)
@@ -191,6 +192,14 @@ npm run dev
 * **Real-time:** Socket.io (WebSocket with HTTP polling fallback).
 * **AI Providers:** Mistral AI, Grok (xAI), Heuristic Neural Engine.
 * **Third-Party APIs:** Brevo Transactional Email, Cloudinary Image Storage CDN.
+
+---
+
+## 👨‍💻 Author & Maintainer
+
+* **Sheikh Noor Abdullah** — [@NoorAbdullah02](https://github.com/NoorAbdullah02)
+* GitHub: [https://github.com/NoorAbdullah02](https://github.com/NoorAbdullah02)
+* Email: [sheikhnoorabdullah02@gmail.com](mailto:sheikhnoorabdullah02@gmail.com)
 
 ---
 

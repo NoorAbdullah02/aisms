@@ -87,15 +87,10 @@ Once the database is seeded, log in with any of the following accounts:
 
 Because Express serves the compiled React frontend directly in production, you can deploy the **entire application in 1 single Web Service on Render**!
 
-### Step 1: Push Project to GitHub
+### Step 1: Push Project to GitHub (master branch)
 ```bash
-git init
-git add .
-git commit -m "feat: complete production-ready AISMS full-stack monorepo"
-git branch -M main
-# Add your remote repository:
 git remote add origin https://github.com/<your-username>/aisms.git
-git push -u origin main
+git push -u origin master
 ```
 
 ### Step 2: Create Web Service on Render
@@ -105,7 +100,7 @@ git push -u origin main
 4. Configure the service settings:
    * **Name:** `aisms` (or your preferred name)
    * **Region:** `Singapore` (or closest to your users)
-   * **Branch:** `main`
+   * **Branch:** `master`
    * **Root Directory:** *(leave blank)*
    * **Runtime:** `Node`
    * **Build Command:** `npm install && npm run build`

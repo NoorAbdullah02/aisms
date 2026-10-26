@@ -49,7 +49,7 @@ async function main() {
   const [studentUser] = await db
     .insert(users)
     .values({
-      fullName: "Rafiul Islam",
+      fullName: "Noor Abdullah",
       email: "student@aisms.dev",
       passwordHash: await hash("Student@123"),
       role: "student",
@@ -63,7 +63,7 @@ async function main() {
       departmentId: csDept!.id,
       studentCode: "STU-2026-001",
       semester: "3",
-      guardianName: "Mr. Islam",
+      guardianName: "Mr. Abdullah",
       guardianPhone: "+880-1111-111111",
     })
     .returning();

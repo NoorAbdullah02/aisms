@@ -10,3 +10,4 @@ build/
 drizzle/
 .vite/
 coverage/
+*.tsbuildinfo

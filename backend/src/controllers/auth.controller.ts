@@ -1,12 +1,95 @@
 import type { Request, Response } from "express";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { db } from "../db/index.js";
-import { users } from "../db/schema.js";
+import { users, students, teachers, departments } from "../db/schema.js";
 import { comparePassword, hashPassword } from "../utils/password.js";
 import { signAccessToken, signRefreshToken, verifyRefreshToken } from "../utils/jwt.js";
-import { loginSchema } from "../validators/schemas.js";
+import { loginSchema, signupSchema } from "../validators/schemas.js";
 import { ApiError } from "../middleware/errorHandler.js";
 import { recordAudit } from "../utils/audit.js";
+
+export async function signup(req: Request, res: Response) {
+  const data = signupSchema.parse(req.body);
+  const normalizedEmail = data.email.trim().toLowerCase();
+
+  // Check if user already exists
+  const [existingUser] = await db
+    .select({ id: users.id })
+    .from(users)
+    .where(sql`LOWER(${users.email}) = ${normalizedEmail}`)
+    .limit(1);
+
+  if (existingUser) {
+    throw new ApiError(409, "An account with this email address already exists. Please sign in instead.");
+  }
+
+  const passwordHash = await hashPassword(data.password);
+
+  const [newUser] = await db
+    .insert(users)
+    .values({
+      fullName: data.fullName.trim(),
+      email: normalizedEmail,
+      passwordHash,
+      role: data.role,
+      isActive: true,
+    })
+    .returning();
+
+  if (!newUser) {
+    throw new ApiError(500, "Failed to create user account.");
+  }
+
+  if (data.role === "student") {
+    const studentCode = data.code?.trim() || `STU-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    await db.insert(students).values({
+      userId: newUser.id,
+      departmentId: data.departmentId || null,
+      studentCode,
+      semester: "1",
+      guardianName: data.guardianName?.trim() || null,
+      guardianPhone: data.guardianPhone?.trim() || null,
+      status: "active",
+      admissionDate: new Date().toISOString().slice(0, 10),
+    });
+  } else if (data.role === "teacher") {
+    const employeeCode = data.code?.trim() || `EMP-${Math.floor(1000 + Math.random() * 9000)}`;
+    await db.insert(teachers).values({
+      userId: newUser.id,
+      departmentId: data.departmentId || null,
+      employeeCode,
+      designation: data.designation?.trim() || "Lecturer",
+      phone: data.phone?.trim() || null,
+      employmentType: "Permanent",
+      joinedAt: new Date().toISOString().slice(0, 10),
+    });
+  }
+
+  const accessToken = signAccessToken({ sub: newUser.id, role: newUser.role, email: newUser.email });
+  const refreshToken = signRefreshToken({ sub: newUser.id });
+
+  recordAudit(newUser.id, "auth.signup", { email: newUser.email, role: newUser.role });
+
+  res.status(201).json({
+    accessToken,
+    refreshToken,
+    user: {
+      id: newUser.id,
+      fullName: newUser.fullName,
+      email: newUser.email,
+      role: newUser.role,
+      avatarUrl: newUser.avatarUrl,
+    },
+    message: "Registration successful!",
+  });
+}
+
+export async function getPublicDepartments(_req: Request, res: Response) {
+  const depts = await db
+    .select({ id: departments.id, name: departments.name, code: departments.code })
+    .from(departments);
+  res.json(depts);
+}
 
 export async function login(req: Request, res: Response) {
   const { email, password } = loginSchema.parse(req.body);

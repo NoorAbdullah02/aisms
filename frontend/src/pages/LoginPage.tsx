@@ -140,7 +140,16 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-6 border-t border-slate-100 pt-5">
+          <div className="mt-4 text-center">
+            <p className="text-xs text-slate-600">
+              Don't have an account yet?{" "}
+              <Link to="/signup" className="font-bold text-blue-600 hover:underline">
+                Create an account
+              </Link>
+            </p>
+          </div>
+
+          <div className="mt-5 border-t border-slate-100 pt-5">
             <div className="flex items-center gap-1.5 mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">
               <ShieldCheck className="h-4 w-4 text-blue-600" />
               Demo Credentials (Click to Autofill)

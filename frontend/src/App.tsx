@@ -3,6 +3,7 @@ import { ProtectedRoute } from "@/routes/ProtectedRoute";
 import AppLayout from "@/components/layout/AppLayout";
 import LandingPage from "@/pages/LandingPage";
 import LoginPage from "@/pages/LoginPage";
+import SignupPage from "@/pages/SignupPage";
 import DashboardPage from "@/pages/DashboardPage";
 import StudentsPage from "@/pages/StudentsPage";
 import TeachersPage from "@/pages/TeachersPage";
@@ -29,6 +30,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/register" element={<SignupPage />} />
 
       <Route
         path="/app"

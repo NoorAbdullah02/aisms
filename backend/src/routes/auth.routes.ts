@@ -1,9 +1,23 @@
 import { Router } from "express";
-import { login, refresh, me, logout, changePassword, forgotPassword, updateProfile, adminResetPassword } from "../controllers/auth.controller.js";
+import {
+  login,
+  signup,
+  getPublicDepartments,
+  refresh,
+  me,
+  logout,
+  changePassword,
+  forgotPassword,
+  updateProfile,
+  adminResetPassword,
+} from "../controllers/auth.controller.js";
 import { requireAuth, requireRole } from "../middleware/auth.js";
 
 const router = Router();
 
+router.post("/signup", signup);
+router.post("/register", signup);
+router.get("/departments", getPublicDepartments);
 router.post("/login", login);
 router.post("/refresh", refresh);
 router.post("/logout", logout);

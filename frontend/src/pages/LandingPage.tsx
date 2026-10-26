@@ -96,9 +96,14 @@ export default function LandingPage() {
             <a href="#modules" className="transition hover:text-blue-600">Portals</a>
             <a href="#stack" className="transition hover:text-blue-600">Technology</a>
           </nav>
-          <Link to="/login" className="btn-primary !px-5 !py-2 text-sm shadow-sm">
-            Sign in
-          </Link>
+          <div className="flex items-center gap-2.5">
+            <Link to="/login" className="btn-secondary !px-4 !py-2 text-xs font-semibold">
+              Sign in
+            </Link>
+            <Link to="/signup" className="btn-primary !px-4 !py-2 text-xs font-semibold shadow-sm">
+              Create Account
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -120,10 +125,13 @@ export default function LandingPage() {
               AISMS delivers role-based management for Students, Faculty Teachers, and Administrators — featuring automated GPA analytics, attendance risk detection, and dual Mistral & Grok AI recommendations.
             </p>
             <div className="hero-cta mt-8 flex flex-wrap gap-4">
-              <Link to="/login" className="btn-primary py-3 px-6 text-sm">
-                Enter Portal <ArrowRight className="h-4 w-4" />
+              <Link to="/signup" className="btn-primary py-3 px-6 text-sm">
+                Create Account <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href="#features" className="btn-secondary py-3 px-6 text-sm">
+              <Link to="/login" className="btn-secondary py-3 px-6 text-sm">
+                Enter Portal
+              </Link>
+              <a href="#features" className="btn-ghost py-3 px-5 text-sm text-slate-600 hover:text-slate-900">
                 Explore Features
               </a>
             </div>

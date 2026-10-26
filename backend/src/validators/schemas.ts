@@ -12,6 +12,19 @@ export const registerUserSchema = z.object({
   role: z.enum(["admin", "teacher", "student"]),
 });
 
+export const signupSchema = z.object({
+  fullName: z.string().min(2, "Full name must be at least 2 characters").max(150),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  role: z.enum(["student", "teacher"]).default("student"),
+  departmentId: z.number().int().positive().optional().nullable(),
+  code: z.string().max(30).optional(),
+  phone: z.string().max(30).optional(),
+  guardianName: z.string().max(150).optional(),
+  guardianPhone: z.string().max(30).optional(),
+  designation: z.string().max(100).optional(),
+});
+
 export const createDepartmentSchema = z.object({
   name: z.string().min(2).max(120),
   code: z.string().min(2).max(20),
